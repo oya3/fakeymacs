@@ -1,5 +1,5 @@
 ﻿# -*- mode: python; coding: utf-8-with-signature-dos -*-
-### oya: config_light.py をコピーして不要な操作をできる限り無効により windows 操作可能なようにした版
+
 ##                             nickname: Fakeymacs Light
 ##
 ## Windows の操作を emacs のキーバインドで行うための設定 Light（Keyhac版）ver.20190920_01
@@ -127,6 +127,7 @@ def configure(keymap):
                             "Code.exe",            # VSCode
                             "xyzzy.exe",           # xyzzy
                             "VirtualBox.exe",      # VirtualBox
+                            "VirtualBoxVM.exe",      # VirtualBox
                             "XWin.exe",            # Cygwin/X
                             "XWin_MobaX.exe",      # MobaXterm/X
                             "Xming.exe",           # Xming
@@ -978,8 +979,8 @@ def configure(keymap):
     ## 「カーソル移動」のキー設定
     define_key(keymap_emacs, "C-b",        reset_search(reset_undo(reset_counter(mark(repeat(backward_char), False)))))
     define_key(keymap_emacs, "C-f",        reset_search(reset_undo(reset_counter(mark(repeat(forward_char), True)))))
-    define_key(keymap_emacs, "M-b",        reset_search(reset_undo(reset_counter(mark(repeat(backward_word), False)))))
-    define_key(keymap_emacs, "M-f",        reset_search(reset_undo(reset_counter(mark(repeat(forward_word), True)))))
+    ## define_key(keymap_emacs, "M-b",        reset_search(reset_undo(reset_counter(mark(repeat(backward_word), False)))))
+    ## define_key(keymap_emacs, "M-f",        reset_search(reset_undo(reset_counter(mark(repeat(forward_word), True)))))
     define_key(keymap_emacs, "C-p",        reset_search(reset_undo(reset_counter(mark(repeat(previous_line), False)))))
     define_key(keymap_emacs, "C-n",        reset_search(reset_undo(reset_counter(mark(repeat(next_line), True)))))
     define_key(keymap_emacs, "C-a",        reset_search(reset_undo(reset_counter(mark(move_beginning_of_line, False)))))
@@ -1025,6 +1026,8 @@ def configure(keymap):
     define_key(keymap_emacs, "A-x",      reset_search(reset_undo(reset_counter(reset_mark(kill_region)))))
     define_key(keymap_emacs, "A-c",      reset_search(reset_undo(reset_counter(reset_mark(copy)))))
     define_key(keymap_emacs, "A-v",      reset_search(reset_undo(reset_counter(reset_mark(repeat(yank))))))
+    # 全選択を alt に変更
+    define_key(keymap_emacs, "M-a",   reset_search(reset_undo(reset_counter(mark_whole_buffer))))
 
     # C-Underscore を機能させるための設定
     if is_japanese_keyboard:
@@ -1054,6 +1057,7 @@ def configure(keymap):
     # define_key(keymap_emacs, "C-s",   reset_undo(reset_counter(reset_mark(isearch_forward))))
     # define_key(keymap_emacs, "M-S-5", reset_search(reset_undo(reset_counter(reset_mark(query_replace)))))
     define_key(keymap_emacs, "M-r",   reset_undo(reset_counter(reset_mark(isearch_backward))))
+    define_key(keymap_emacs, "M-s",   reset_undo(reset_counter(reset_mark(isearch_forward))))
     define_key(keymap_emacs, "M-f",   reset_undo(reset_counter(reset_mark(isearch_forward))))
 
     # ## 「キーボードマクロ」のキー設定
@@ -1316,6 +1320,6 @@ def configure(keymap):
     ## キーバインド（タスク切り替え画面用）
     ##################################################
 
-    define_key(keymap_tsw, "A-p", previous_window)
-    define_key(keymap_tsw, "A-n", next_window)
-    define_key(keymap_tsw, "A-g", self_insert_command("A-Esc"))
+    # define_key(keymap_tsw, "A-p", previous_window)
+    # define_key(keymap_tsw, "A-n", next_window)
+    # define_key(keymap_tsw, "A-g", self_insert_command("A-Esc"))
